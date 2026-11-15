@@ -2,3 +2,8 @@
 pillow>=10.0.0
 # Only needed for PDF input mode (--input some.pdf).
 pypdf>=4.0.0
+# Only needed for the ink animation (ink_extract_assets.py / ink_render.py).
+pymupdf>=1.24.0
+numpy>=1.26.0
+imageio>=2.31.0
+imageio-ffmpeg>=0.4.9

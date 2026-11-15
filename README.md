@@ -68,3 +68,22 @@ python tests/test_jpg2gif.py                            # dry-run order + GIF ve
 
 The sample set uses filenames that disagree with their EXIF timestamps, so the
 test proves the GIF frames play in true chronological order.
+
+## Ink animation (artistic MP4 from a PDF art book)
+
+`ink_extract_assets.py` + `ink_render.py` turn a scanned art-book PDF into a
+monochrome 9:16 animation: scanned pages with slow Ken Burns zooms, ink-blot
+wipe transitions, film grain + vignette, and kinetic text taken from the
+book ("We could be...", "It could be...", "We expect to call...", A-Z).
+
+```bash
+pip install -r requirements.txt
+# place the PDF next to the scripts, then:
+python ink_extract_assets.py --pdf nOlBHcsP-20261114073123_001-2.pdf   # -> ink_assets/pages/
+python ink_render.py --w 1080 --h 1920 --fps 30 --dur 15.0 \
+  --mode hybrid --text all --out nOlBHcsP-20261114073123_001-2_ink_9x16_15s.mp4
+```
+
+`--mode hybrid|pages|gen` (pages + overlays / pages only / generative), `--text all|sentences|az|none`,
+`--preview 1.0,3.6,12.8` dumps full-res stills. Prebuilt output:
+`nOlBHcsP-20261114073123_001-2_ink_9x16_15s.mp4` (1080x1920, 30 fps, 15 s, h264/yuv420p).
